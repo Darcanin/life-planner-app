@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@config "../tailwind.config.ts";
+
+div,
+main {
+	box-sizing: border-box;
+}
+
+:root {
+}
