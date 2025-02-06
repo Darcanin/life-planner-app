@@ -1,9 +1,8 @@
-import './App.css'
-import Content from './components/layout/Content'
+import { BrowserRouter } from 'react-router-dom'
 import Header from './components/layout/Header'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/home/Home'
-import Daily from './pages/daily/Daily'
+import Content from './components/layout/Content'
+import AppRoutes from './components/layout/AppRoutes'
+import './App.css'
 
 function App() {
 	return (
@@ -11,10 +10,7 @@ function App() {
 			<main className='bg-background h-full w-full'>
 				<Header />
 				<Content>
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/daily' element={<Daily />} />
-					</Routes>
+					<AppRoutes />
 				</Content>
 			</main>
 		</BrowserRouter>

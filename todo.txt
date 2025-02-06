@@ -1,20 +1,23 @@
 План разработки:
-+  залить на github
-+  создать базовый Layout компонент в React (Header + Content + Footer)
-+  создать навигацию в header
-.. разработать Daily:
-   > - заголовок (поиск и фильтрация)
-   > + лист с Daily-задачами
-   > + компонент Daily-задачи
-   > - придумать дизайн
-   > - фильтрация
-   > - разные вкладки для выполненных и не выполненных Daily
+> Daily:
+   + Daily-task list
+   + Daily-task
+   - header (+поиск, completed)
+   + changer status of completed for Daily-task
+   +- разбиение на компоненты
+   +- вынос состояния в zustand
+   - удаление
+   - изменение
+   - строку поиска добавить в состояние
+   - 
 
 
+!Почитать в чём разница между ISO и UTC при приведение даты к строке
 
-Сценарий:
-+ создан tailwind.config.ts
-+ задана цветовая схема
-+ изучены плагины Tauri 2: sql и store
-- 
--
+
+Библиотеки:
+* rc-tooltip
+* react-hook-form
+* react-hook-toast
+* react-icons
+* zustand +
