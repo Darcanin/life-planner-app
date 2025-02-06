@@ -20,4 +20,4 @@
 * react-hook-form
 * react-hook-toast
 * react-icons
-* zustand +
+* zustand ++
