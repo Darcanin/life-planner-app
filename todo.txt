@@ -2,13 +2,13 @@
 > Daily:
    + Daily-task list
    + Daily-task
-   - header (+поиск, completed)
+   + header (+поиск, completed)
    + changer status of completed for Daily-task
-   +- разбиение на компоненты
-   +- вынос состояния в zustand
-   - удаление
-   - изменение
-   - строку поиска добавить в состояние
+   + разбиение на компоненты
+   + вынос состояния в zustand
+   + удаление
+   + строку поиска добавить в состояние
+   - изменение -> форма, выезжающее окно?
    - 
 
 
@@ -19,5 +19,3 @@
 * rc-tooltip
 * react-hook-form
 * react-hook-toast
-* react-icons
-* zustand ++

@@ -7,7 +7,7 @@ import './App.css'
 function App() {
 	return (
 		<BrowserRouter>
-			<main className='bg-background h-full w-full'>
+			<main className='bg-background h-full w-full flex flex-col'>
 				<Header />
 				<Content>
 					<AppRoutes />
