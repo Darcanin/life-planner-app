@@ -30,6 +30,7 @@ const Creator = () => {
 				type='text'
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
+				placeholder='Название Daily-задачи...'
 			/>
 			<button
 				type='submit'

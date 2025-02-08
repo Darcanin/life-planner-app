@@ -6,28 +6,39 @@ interface IDailyState {
 	search: string
 	setSearch: (str: string) => void
 	create: (newDaily: IDaily) => void
+	update: (updatedDaily: IDaily) => void
 	delete: (id: number) => void
-	get: () => void
+	getDailyById: (id: number) => IDaily | undefined
 	completeChange: (id: number) => void
 }
 
-const dailyState = create<IDailyState>((set) => ({
+const dailyState = create<IDailyState>((set, get) => ({
 	daily: [],
 	search: '',
 
-	//
+	// Поиск
 	setSearch: (str) => set({ search: str }),
-	//
+
+	// Задачи - CRID
 	create: (newDaily) =>
 		set((state) => ({
 			daily: [...state.daily, newDaily],
 		})),
-	// update: (id) => set(() => ({})),
+	update: (updatedDaily) =>
+		set((state) => ({
+			daily: state.daily.map((daily) =>
+				daily.id !== updatedDaily.id ? daily : updatedDaily
+			),
+		})),
 	delete: (id) =>
 		set((state) => ({
 			daily: state.daily.filter((daily) => daily.id !== id),
 		})),
-	get: () => {},
+
+	// Задачи - дополнительные методы
+	getDailyById: (id) => {
+		return get().daily.find((daily) => daily.id === id)
+	},
 	completeChange: (id) =>
 		set((state) => ({
 			daily: state.daily.map((daily) =>
@@ -44,3 +55,15 @@ const dailyState = create<IDailyState>((set) => ({
 }))
 
 export default dailyState
+
+//
+interface ICurrentDaily {
+	id: number | null
+	setCurrentId: (id: number | null) => void
+}
+
+//
+export const currentDaily = create<ICurrentDaily>((set) => ({
+	id: null,
+	setCurrentId: (id) => set({ id: id }),
+}))
