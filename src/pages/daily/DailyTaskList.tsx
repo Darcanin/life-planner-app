@@ -2,8 +2,11 @@ import DailyTask from './DailyTask'
 import dailyState from './State'
 
 const DailyTaskList = () => {
-	const dailyList = dailyState((state) => state.daily)
+	const daily = dailyState((state) => state.daily)
+	// const getFilteredDaily = dailyState((state) => state.getFilteredDaily)
+	const { getFilteredDaily } = dailyState()
 	const search = dailyState((state) => state.search)
+	let dailyList = getFilteredDaily()
 
 	return (
 		<div
