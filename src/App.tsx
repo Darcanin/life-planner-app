@@ -1,20 +1,18 @@
 import { BrowserRouter } from 'react-router-dom'
-import Header from './components/layout/Header'
-import Content from './components/layout/Content'
-import AppRoutes from './components/layout/AppRoutes'
-import './App.css'
+import { AppRoutes } from './AppRoutes'
+import { AppHeader } from './components/layout/AppHeader'
+import { AppContent } from './components/layout/AppContent'
+import { ContentWrapper } from './components/layout/ContentWrapper'
 
-function App() {
+export function App() {
 	return (
 		<BrowserRouter>
-			<main className='bg-background h-full w-full flex flex-col'>
-				<Header />
-				<Content>
+			<AppContent>
+				<AppHeader />
+				<ContentWrapper>
 					<AppRoutes />
-				</Content>
-			</main>
+				</ContentWrapper>
+			</AppContent>
 		</BrowserRouter>
 	)
 }
-
-export default App
