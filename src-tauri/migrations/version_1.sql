@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS "DailyTasks" (
     "created_date"  TEXT NOT NULL,
     "edited_date"   TEXT NOT NULL,
     "closed_date"   TEXT,
-    "streak"        INTEGER NOT NULL,
+    "streak"        INTEGER NOT NULL DEFAULT 0,
     "repeat_delay"  INTEGER
 );
 
