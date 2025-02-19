@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const Home = () => {
+export const Home = () => {
 	const [posts, setPosts] = useState([])
 
 	const fetchData = async () => {
@@ -29,5 +29,3 @@ const Home = () => {
 		</>
 	)
 }
-
-export default Home

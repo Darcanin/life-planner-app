@@ -21,7 +21,6 @@ export const Daily = () => {
 		bb.select('SELECT * FROM DailyTasks')
 			.then((res: any) => {
 				setDaily(res)
-				console.log(res)
 			})
 			.catch((err) => {
 				console.log(err)
@@ -32,23 +31,21 @@ export const Daily = () => {
 		loadDataBase()
 	}, [])
 
-	const onDailySubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onCreateDaily = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		const formData = new FormData(e.currentTarget)
 		const title = formData.get('title') as string
-
-		console.log(title)
 
 		if (!db) return
 		const currentDate = new Date().toISOString()
 
 		db.execute(
 			`INSERT INTO DailyTasks 
-			(title, created_date, edited_date, streak) 
+			(title, created_date, edited_date) 
 			VALUES 
-			($1, $2, $3, $4)`,
-			[title, currentDate, currentDate, 0]
+			($1, $2, $3)`,
+			[title, currentDate, currentDate]
 		)
 		loadDataBase()
 	}
@@ -63,39 +60,37 @@ export const Daily = () => {
 	return (
 		<>
 			<div className='p-4'>
-				<header className='px-3 py-2 flex flex-row gap-3 border border-gray-600 rounded'>
+				<header className='header-type1'>
 					<div className='filters'>
 						<form
 							className='flex flex-row gap-2'
-							onSubmit={onDailySubmit}
+							onSubmit={onCreateDaily}
 						>
 							<input
+								autoComplete='off'
 								type='search'
 								placeholder='Название...'
 								name='title'
 							/>
-							<button
-								type='submit'
-								className='px-3 py-2 rounded bg-white/5 transition-colors hover:bg-white/15 transform-duration-300'
-							>
+							<button type='submit' className='button-type1'>
 								Сохранить
 							</button>
 						</form>
 					</div>
 				</header>
-				<ul className='p-4 flex flex-col gap-1'>
+				<ul className='py-3 flex flex-col gap-1'>
 					{daily ? (
-						daily.map((task: DailyTask) => {
+						daily.map((item: DailyTask) => {
 							return (
 								<li
-									key={task.id}
-									className='custom-container-type1 flex flex-row justify-between'
+									key={item.id}
+									className='box-type1 flex flex-row justify-between'
 								>
-									<span>{task.title}</span>
+									<span>{item.title}</span>
 									<button
 										type='button'
 										onClick={() => {
-											onDailyDelete(task.id)
+											onDailyDelete(item.id)
 										}}
 									>
 										❌

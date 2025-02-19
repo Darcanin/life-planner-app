@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 /**
  * AppHeader - это компонент шапки приложения.
@@ -8,13 +8,32 @@ import { Link } from 'react-router-dom'
  */
 
 export const AppHeader = () => {
+	const location = useLocation()
+
 	return (
 		<>
-			<nav className='max-sm:hidden my-2 header flex flex-row gap-1 text-white [&>*]:px-2 [&>*]:py-1 [&>*]:bg-dark-grey [&>*]:rounded'>
-				<Link to='/'>Home</Link>
-				<Link to='/dev'>Components</Link>
-				<Link to='/about'>About</Link>
-				<Link to='/daily'>Daily-tasks</Link>
+			<nav className='header-main'>
+				<Link to='/' className={location.pathname === '/' ? 'active' : ''}>
+					Home
+				</Link>
+				<Link
+					to='/dev'
+					className={location.pathname === '/dev' ? 'active' : ''}
+				>
+					Components
+				</Link>
+				<Link
+					to='/todo'
+					className={location.pathname === '/todo' ? 'active' : ''}
+				>
+					ToDo tasks
+				</Link>
+				<Link
+					to='/daily'
+					className={location.pathname === '/daily' ? 'active' : ''}
+				>
+					Daily tasks
+				</Link>
 			</nav>
 			<div className='max-sm:block hidden'> Popup! </div>
 		</>

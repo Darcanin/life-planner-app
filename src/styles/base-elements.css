@@ -7,8 +7,9 @@ button {
 	cursor: pointer;
 }
 
-input[type='search'] {
-	padding: 0.25rem 0.43rem;
+input[type='search'],
+input[type='text'] {
+	padding: 0.25rem 0.75rem;
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 0.25rem;
 	-webkit-border-radius: 0.25rem;
@@ -19,6 +20,8 @@ input[type='search'] {
 	outline: 2px solid transparent;
 	transition-property: outline, background-color;
 	transition-duration: 0.2s;
+
+	font-size: 15px;
 
 	&:focus {
 		outline: 2px solid rgba(5, 255, 163, 0.6);
