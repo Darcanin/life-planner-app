@@ -34,6 +34,12 @@ export const AppHeader = () => {
 				>
 					Daily tasks
 				</Link>
+				<Link
+					to='/settings'
+					className={location.pathname === '/settings' ? 'active' : ''}
+				>
+					Settings
+				</Link>
 			</nav>
 			<div className='max-sm:block hidden'> Popup! </div>
 		</>

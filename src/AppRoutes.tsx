@@ -3,6 +3,7 @@ import { Home } from './pages/home/Home'
 import { Components } from './pages/components/Components'
 import { Daily } from './pages/daily/Daily'
 import { ToDo } from './pages/todo/ToDo'
+import { Settings } from './pages/settings/Settings'
 
 /**
  * AppRoutes - компонент, содержащий маршруты приложения.
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
 			<Route index element={<Home />} />
 			<Route path='daily' element={<Daily />} />
 			<Route path='todo' element={<ToDo />} />
+			<Route path='settings' element={<Settings />} />
 
 			<Route path='dev'>
 				<Route index element={<Components />} />

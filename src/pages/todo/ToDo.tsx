@@ -1,70 +1,43 @@
-import Database from '@tauri-apps/plugin-sql'
-import { useEffect, useState } from 'react'
-
-interface ToDoTask {
-	id: number
-	title: string
-	description: string | null
-	created_date: string
-	edited_date: string
-	start_date: string | null
-	finish_date: string | null
-	closed_date: string | null
-}
+import { useEffect } from 'react'
+import { ModalWindowState } from '../../components/windows/ModalWindowState'
+import { SoundsConfig } from '../../config/SoundsConfig'
+import { playSound } from '../../helpers/playSound'
+import { ToDoState } from './ToDoState'
 
 export const ToDo = () => {
-	const [db, setDb] = useState<Database | null>(null)
-	const [todo, setTodo] = useState<ToDoTask[]>()
+	const createToDo = ToDoState((state) => state.create)
+	const deleteTodo = ToDoState((state) => state.delete)
+	const loadDataBase = ToDoState((state) => state.loadDataBase)
 
-	const loadDataBase = async () => {
-		const bb = await Database.load('sqlite:life-planner.db')
-		setDb(bb)
-
-		bb.select('SELECT * FROM TodoTasks')
-			.then((res: any) => {
-				setTodo(res)
-				console.log(res)
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-	}
+	const openModal = ModalWindowState((state) => state.open)
+	const todo = ToDoState((state) => state.todos)
 
 	useEffect(() => {
 		loadDataBase()
 	}, [])
 
-	const onToDoCreate = (e: React.FormEvent<HTMLFormElement>) => {
+	const onCreateToDo = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		const formData = new FormData(e.currentTarget)
 		const title = formData.get('title') as string
 
-		const currentDate = new Date().toISOString()
-		db?.execute(
-			`INSERT INTO TodoTasks 
-            (title, created_date, edited_date) 
-            VALUES 
-            ($1, $2, $3)`,
-			[title, currentDate, currentDate]
-		)
-		loadDataBase()
-	}
-
-	const onToDoDelete = (id: number) => {
-		db?.execute(`DELETE FROM TodoTasks WHERE id = $1`, [id])
-		loadDataBase()
+		createToDo(title)
 	}
 
 	const onTaskComplete = () => {
-		const sound = new Audio('/public/sounds/minecraft_anvil.mp3')
-		sound.play()
+		playSound(SoundsConfig.minecraft_anvil)
+	}
+
+	const onTaskEdit = (id: number) => {
+		playSound(SoundsConfig.minecraft_open_chest)
+		openModal(<div>Редактирование задачи №{id}</div>)
 	}
 
 	return (
 		<div className='p-4'>
 			<header className='header-type1'>
-				<form onSubmit={onToDoCreate} className='flex flex-row gap-2'>
+				<form onSubmit={onCreateToDo} className='flex flex-row gap-2'>
 					<input
 						autoComplete='off'
 						type='text'
@@ -84,11 +57,10 @@ export const ToDo = () => {
 							<button type='button' onClick={onTaskComplete}>
 								✅
 							</button>
-							<button type='button'>✏️</button>
-							<button
-								type='button'
-								onClick={() => onToDoDelete(item.id)}
-							>
+							<button type='button' onClick={() => onTaskEdit(item.id)}>
+								✏️
+							</button>
+							<button type='button' onClick={() => deleteTodo(item.id)}>
 								❌
 							</button>
 						</div>
