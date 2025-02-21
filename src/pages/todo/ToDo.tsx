@@ -3,6 +3,7 @@ import { ModalWindowState } from '../../components/windows/ModalWindowState'
 import { SoundsConfig } from '../../config/SoundsConfig'
 import { playSound } from '../../helpers/playSound'
 import { ToDoState } from './ToDoState'
+import { ToDoForm } from './ToDoForm'
 
 export const ToDo = () => {
 	const createToDo = ToDoState((state) => state.create)
@@ -30,8 +31,7 @@ export const ToDo = () => {
 	}
 
 	const onTaskEdit = (id: number) => {
-		playSound(SoundsConfig.minecraft_open_chest)
-		openModal(<div>Редактирование задачи №{id}</div>)
+		openModal(<ToDoForm id={id} />)
 	}
 
 	return (

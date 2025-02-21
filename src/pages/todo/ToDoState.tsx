@@ -1,12 +1,20 @@
 import Database from '@tauri-apps/plugin-sql'
 import { create } from 'zustand'
 import { ToDoTask } from './types'
+import { playSound } from '../../helpers/playSound'
+import { SoundsConfig } from '../../config/SoundsConfig'
 
 interface IToDoState {
 	db: Database | null
 	todos: ToDoTask[]
+
+	// CRUD operations
 	create: (title: string) => void
+	update: (todo: ToDoTask) => void
 	delete: (id: number) => void
+	get: (id: number) => ToDoTask | undefined
+
+	// Load data
 	loadDataBase: () => void
 	loadData: () => void
 }
@@ -14,6 +22,8 @@ interface IToDoState {
 export const ToDoState = create<IToDoState>((set, get) => ({
 	db: null,
 	todos: [],
+
+	// CRID operations
 	create: (title) => {
 		const currentDate = new Date().toISOString()
 		get().db?.execute(
@@ -25,11 +35,25 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 		)
 		get().loadData()
 	},
-
+	update: (todo) => {
+		get().db?.execute(
+			`UPDATE TodoTasks 
+					SET title = $1, edited_date = $2 
+					WHERE id = $3`,
+			[todo.title, new Date().toISOString(), todo.id]
+		)
+		get().loadData()
+	},
 	delete: (id) => {
+		playSound(SoundsConfig.minecraft_hit)
 		get().db?.execute(`DELETE FROM TodoTasks WHERE id = $1`, [id])
 		get().loadData()
 	},
+	get: (id) => {
+		return get().todos.find((todo) => todo.id === id)
+	},
+
+	// Load data
 	loadDataBase: async () => {
 		set({ db: await Database.load('sqlite:life-planner.db') })
 		get().loadData()

@@ -3,7 +3,31 @@
 
 /* Контейнеры задач */
 .box-type1 {
-	@apply px-3 py-2 rounded bg-grey hover:bg-secondary/20 text-white transition-colors duration-300 flex flex-row justify-between [&:hover>.box-type1-options]:opacity-100;
+	@apply px-3 py-2 rounded bg-grey hover:bg-secondary/20 text-white 
+	flex flex-row justify-between 
+	[&:hover>.box-type1-options]:opacity-100;
+
+	transition-property: transform, opacity, background-color;
+	transition-duration: 300ms;
+
+	opacity: 1;
+	transform: translateY(0) translateX(0);
+	-webkit-transform: translateY(0) translateX(0);
+	-moz-transform: translateY(0) translateX(0);
+	-ms-transform: translateY(0) translateX(0);
+	-o-transform: translateY(0) translateX(0);
+}
+
+/* Начальное значение для анимации появления */
+@starting-style {
+	.box-type1 {
+		opacity: 0;
+		transform: translateY(-20px) translateX(5px);
+		-webkit-transform: translateY(-20px) translateX(5px);
+		-moz-transform: translateY(-20px) translateX(5px);
+		-ms-transform: translateY(-20px) translateX(5px);
+		-o-transform: translateY(-20px) translateX(5px);
+	}
 }
 
 .box-type1-options {

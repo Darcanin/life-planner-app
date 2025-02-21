@@ -9,7 +9,7 @@ import { SettingsConfig } from '../config/SettingsConfig'
 
 export const playSound = (path: string, soundReduction?: number) => {
 	const sound = new Audio(path)
-	const volume = SettingsConfig.volume
+	const volume = SettingsConfig.SoundVolume
 	sound.volume = soundReduction
 		? (volume / 100) * soundReduction
 		: volume / 100

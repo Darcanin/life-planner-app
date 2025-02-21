@@ -18,7 +18,7 @@ const initSettings = async () => {
 	const res: IDBSettings[] = await DataBase.db.select(
 		'SELECT key, value FROM Settings'
 	)
-	// console.log(res)
+
 	if (res.length === 0) {
 		DataBase.db.execute(
 			`INSERT INTO Settings (value) 
