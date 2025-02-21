@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { InputRange } from '../../components/ui/inputs/InputRange'
-import { SettingsConfig } from '../../config/SettingsConfig'
+import { saveConfig, SettingsConfig } from '../../config/SettingsConfig'
 
 export const Settings = () => {
-	const [volume, setVolume] = useState(SettingsConfig.volume)
+	const [volume, setVolume] = useState(SettingsConfig.SoundVolume)
+	console.log(SettingsConfig.SoundVolume)
 
 	return (
 		<>
@@ -21,7 +22,8 @@ export const Settings = () => {
 					setValue={(val) => {
 						console.log(val)
 						setVolume(val)
-						SettingsConfig.volume = val
+						SettingsConfig.SoundVolume = val
+						saveConfig()
 					}}
 				/>
 			</div>

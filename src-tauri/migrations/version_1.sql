@@ -37,3 +37,17 @@ CREATE TABLE IF NOT EXISTS "HistoryDailyTasks" (
     
     FOREIGN KEY ("daily_task_id") REFERENCES "DailyTasks" ("id")
 );
+
+
+
+-- Settings
+CREATE TABLE IF NOT EXISTS "Settings" (
+    "id"            INTEGER PRIMARY KEY AUTOINCREMENT,
+    "key"           TEXT NOT NULL,
+    "value"         TEXT NOT NULL,
+    "description"   TEXT
+);
+-- Insert default values into Settings
+INSERT INTO "Settings" ("key", "value", "description") VALUES
+('SoundVolume', '50', 'Громкость воспроизведения звуков');
+-- ,('Language', 'ru', 'Язык приложения по умолчанию');
