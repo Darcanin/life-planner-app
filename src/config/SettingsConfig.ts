@@ -15,12 +15,16 @@ export const SettingsConfig = {
 }
 
 const initSettings = async () => {
+	while (!DataBase.db) {
+		await new Promise((resolve) => setTimeout(resolve, 100))
+	}
+
 	const res: IDBSettings[] = await DataBase.db.select(
 		'SELECT key, value FROM Settings'
 	)
 
 	if (res.length === 0) {
-		DataBase.db.execute(
+		DataBase.db?.execute(
 			`INSERT INTO Settings (value) 
 				VALUES ($1)
 				WHERE key = 'SoundVolume'`,
@@ -33,7 +37,7 @@ const initSettings = async () => {
 initSettings()
 
 export const saveConfig = () => {
-	DataBase.db.execute(
+	DataBase.db?.execute(
 		`UPDATE Settings
 			SET value = $1 
 			WHERE key = $2`,
