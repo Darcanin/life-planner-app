@@ -17,12 +17,6 @@ export const AppHeader = () => {
 					Home
 				</Link>
 				<Link
-					to='/dev'
-					className={location.pathname === '/dev' ? 'active' : ''}
-				>
-					Components
-				</Link>
-				<Link
 					to='/todo'
 					className={location.pathname === '/todo' ? 'active' : ''}
 				>

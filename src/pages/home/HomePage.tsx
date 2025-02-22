@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const Home = () => {
+export const HomePage = () => {
 	const [posts, setPosts] = useState([])
 
 	const fetchData = async () => {

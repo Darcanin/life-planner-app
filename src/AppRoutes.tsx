@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
-import { Home } from './pages/home/Home'
-import { Components } from './pages/components/Components'
-import { Daily } from './pages/daily/Daily'
-import { ToDo } from './pages/todo/ToDo'
-import { Settings } from './pages/settings/Settings'
+import { HomePage } from './pages/home/HomePage'
+import { DailyPage } from './pages/daily/DailyPage'
+import { ToDoPage } from './pages/todo/ToDoPage'
+import { SettingsPage } from './pages/settings/SettingsPage'
 
 /**
  * AppRoutes - компонент, содержащий маршруты приложения.
@@ -14,14 +13,14 @@ import { Settings } from './pages/settings/Settings'
 export const AppRoutes = () => {
 	return (
 		<Routes>
-			<Route index element={<Home />} />
-			<Route path='daily' element={<Daily />} />
-			<Route path='todo' element={<ToDo />} />
-			<Route path='settings' element={<Settings />} />
+			<Route index element={<HomePage />} />
+			<Route path='daily' element={<DailyPage />} />
+			<Route path='todo' element={<ToDoPage />} />
+			<Route path='settings' element={<SettingsPage />} />
 
-			<Route path='dev'>
+			{/* <Route path='dev'>
 				<Route index element={<Components />} />
-			</Route>
+			</Route> */}
 		</Routes>
 	)
 }

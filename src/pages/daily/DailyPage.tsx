@@ -10,7 +10,7 @@ interface DailyTask {
 	streak: number
 }
 
-export const Daily = () => {
+export const DailyPage = () => {
 	const [db, setDb] = useState<Database | null>(null)
 	const [daily, setDaily] = useState<DailyTask[]>()
 

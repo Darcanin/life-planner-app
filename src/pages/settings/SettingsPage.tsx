@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { InputRange } from '../../components/ui/inputs/InputRange'
 import { saveConfig, SettingsConfig } from '../../config/SettingsConfig'
 
-export const Settings = () => {
+export const SettingsPage = () => {
 	const [volume, setVolume] = useState(SettingsConfig.SoundVolume)
 	console.log(SettingsConfig.SoundVolume)
 

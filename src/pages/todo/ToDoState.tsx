@@ -1,18 +1,18 @@
 import Database from '@tauri-apps/plugin-sql'
 import { create } from 'zustand'
-import { ToDoTask } from './types'
+import { IToDoTask } from './types'
 import { playSound } from '../../helpers/playSound'
 import { SoundsConfig } from '../../config/SoundsConfig'
 
 interface IToDoState {
 	db: Database | null
-	todos: ToDoTask[]
+	todos: IToDoTask[]
 
 	// CRUD operations
 	create: (title: string) => void
-	update: (todo: ToDoTask) => void
+	update: (todo: IToDoTask) => void
 	delete: (id: number) => void
-	get: (id: number) => ToDoTask | undefined
+	get: (id: number) => IToDoTask | undefined
 
 	// Load data
 	loadDataBase: () => void

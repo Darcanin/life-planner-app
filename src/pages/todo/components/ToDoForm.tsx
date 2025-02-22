@@ -1,14 +1,14 @@
+import { ModalWindowState } from '../../../components/windows/ModalWindowState'
 import { useForm } from 'react-hook-form'
-import { ToDoState } from './ToDoState'
+import { ToDoState } from '../ToDoState'
 import { useEffect } from 'react'
-import { ToDoTask } from './types'
-import { ModalWindowState } from '../../components/windows/ModalWindowState'
+import { IToDoTask } from '../types'
 
 export const ToDoForm = ({ id }: { id: number }) => {
 	const getDodo = ToDoState((state) => state.get)
 	const updateTodo = ToDoState((state) => state.update)
 	const closeModal = ModalWindowState((state) => state.close)
-	const { register, handleSubmit, reset } = useForm<ToDoTask>()
+	const { register, handleSubmit, reset } = useForm<IToDoTask>()
 
 	// Получение данных
 	useEffect(() => {
@@ -17,7 +17,7 @@ export const ToDoForm = ({ id }: { id: number }) => {
 	}, [])
 
 	// Обновление данных
-	const onTodoUpdate = (data: ToDoTask) => {
+	const onTodoUpdate = (data: IToDoTask) => {
 		console.log(data)
 		updateTodo(data)
 		closeModal()

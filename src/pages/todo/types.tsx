@@ -1,4 +1,4 @@
-export interface ToDoTask {
+export interface IToDoTask {
 	id: number
 	title: string
 	description: string | null
