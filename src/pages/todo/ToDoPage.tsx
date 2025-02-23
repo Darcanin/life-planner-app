@@ -1,12 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { ToDoState } from './ToDoState'
 import { ToDoList } from './components/ToDoList'
+import { ToDoListHistory } from './components/ToDoListHistory'
 
 export const ToDoPage = () => {
+	const [display, setDisplay] = useState<'list' | 'history'>('list')
+	const todos = ToDoState((state) => state.todos)
 	const createToDo = ToDoState((state) => state.create)
 	const loadDataBase = ToDoState((state) => state.loadDataBase)
-
-	const todos = ToDoState((state) => state.todos)
 
 	useEffect(() => {
 		loadDataBase()
@@ -23,7 +24,7 @@ export const ToDoPage = () => {
 
 	return (
 		<div className='p-4'>
-			<header className='header-type1'>
+			<header className='header-type1 flex justify-between'>
 				<form onSubmit={onCreateToDo} className='flex flex-row gap-2'>
 					<input
 						autoComplete='off'
@@ -35,8 +36,21 @@ export const ToDoPage = () => {
 						Создать
 					</button>
 				</form>
+				<button
+					type='button'
+					onClick={() =>
+						setDisplay(display === 'list' ? 'history' : 'list')
+					}
+					className={
+						'h-full button-type1' +
+						(display === 'history' ? ' bg-amber-300/90!' : '')
+					}
+				>
+					🏁
+				</button>
 			</header>
-			<ToDoList todos={todos} />
+			{display === 'list' ? <ToDoList todos={todos} /> : null}
+			{display === 'history' ? <ToDoListHistory todos={todos} /> : null}
 		</div>
 	)
 }

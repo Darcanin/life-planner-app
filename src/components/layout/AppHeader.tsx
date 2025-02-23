@@ -22,12 +22,12 @@ export const AppHeader = () => {
 				>
 					ToDo tasks
 				</Link>
-				<Link
+				{/* <Link
 					to='/daily'
 					className={location.pathname === '/daily' ? 'active' : ''}
 				>
 					Daily tasks
-				</Link>
+				</Link> */}
 				<Link
 					to='/settings'
 					className={location.pathname === '/settings' ? 'active' : ''}

@@ -13,6 +13,7 @@ interface IToDoState {
 	update: (todo: IToDoTask) => void
 	delete: (id: number) => void
 	get: (id: number) => IToDoTask | undefined
+	completed: (id: number) => void
 
 	// Load data
 	loadDataBase: () => void
@@ -51,6 +52,24 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 	},
 	get: (id) => {
 		return get().todos.find((todo) => todo.id === id)
+	},
+	completed: (id) => {
+		const isCompleted = get().todos.find(
+			(todo) => todo.id === id
+		)?.closed_date
+		isCompleted
+			? playSound(SoundsConfig.minecraft_hammer)
+			: playSound(SoundsConfig.minecraft_anvil)
+		const date = isCompleted ? null : new Date().toISOString()
+
+		get().db?.execute(
+			`
+			UPDATE TodoTasks 
+				SET closed_date = $1 
+				WHERE id = $2`,
+			[date, id]
+		)
+		get().loadData()
 	},
 
 	// Load data
