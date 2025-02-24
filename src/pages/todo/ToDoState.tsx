@@ -58,7 +58,7 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 			(todo) => todo.id === id
 		)?.closed_date
 		isCompleted
-			? playSound(SoundsConfig.minecraft_hammer)
+			? playSound(SoundsConfig.task_uncompleted)
 			: playSound(SoundsConfig.minecraft_anvil)
 		const date = isCompleted ? null : new Date().toISOString()
 

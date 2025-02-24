@@ -1,7 +1,11 @@
+import { ToDoState } from '../ToDoState'
 import { IToDoTask } from '../types'
 import { ToDoTask } from './ToDoTask'
 
 export const ToDoListHistory = ({ todos }: { todos: IToDoTask[] }) => {
+	const completedTodo = ToDoState((state) => state.completed)
+	const options = [{ text: '🔙', fn: completedTodo }]
+
 	// Сортируем задачи по дате в обратном порядке
 	const sortedTodos = [...todos].sort((a, b) => {
 		if (!a.closed_date || !b.closed_date) return 0
@@ -39,7 +43,7 @@ export const ToDoListHistory = ({ todos }: { todos: IToDoTask[] }) => {
 					<h2>{key}</h2> <hr />
 					<div>
 						{tasks.map((task) => (
-							<ToDoTask key={task.id} item={task} />
+							<ToDoTask key={task.id} item={task} options={options} />
 						))}
 					</div>
 				</div>

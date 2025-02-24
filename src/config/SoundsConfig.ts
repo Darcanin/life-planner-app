@@ -6,5 +6,5 @@ export const SoundsConfig = {
 		'/sounds/minecraft_falling_to_the_ground.mp3',
 	minecraft_hit: '/sounds/minecraft_hit.mp3',
 	minecraft_hammer: '/sounds/minecraft_hammer.mp3',
-	// dota_kunkka_back: '/sounds/dota_kunkka_back.mpeg',
+	task_uncompleted: '/sounds/dota_buyback.mp3',
 }
