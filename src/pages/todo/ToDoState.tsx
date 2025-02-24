@@ -46,7 +46,7 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 		get().loadData()
 	},
 	delete: (id) => {
-		playSound(SoundsConfig.minecraft_hit)
+		playSound(SoundsConfig.task_deleted)
 		get().db?.execute(`DELETE FROM TodoTasks WHERE id = $1`, [id])
 		get().loadData()
 	},
@@ -59,7 +59,7 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 		)?.closed_date
 		isCompleted
 			? playSound(SoundsConfig.task_uncompleted)
-			: playSound(SoundsConfig.minecraft_anvil)
+			: playSound(SoundsConfig.task_completed)
 		const date = isCompleted ? null : new Date().toISOString()
 
 		get().db?.execute(

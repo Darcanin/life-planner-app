@@ -1,10 +1,10 @@
 export const SoundsConfig = {
-	minecraft_anvil: '/sounds/minecraft_anvil.mp3',
-	minecraft_open_chest: '/sounds/minecraft_open_chest.mp3',
-	minecraft_close_chest: '/sounds/minecraft_close_chest.mp3',
-	minecraft_falling_to_the_ground:
-		'/sounds/minecraft_falling_to_the_ground.mp3',
-	minecraft_hit: '/sounds/minecraft_hit.mp3',
-	minecraft_hammer: '/sounds/minecraft_hammer.mp3',
+	// Tasks
+	// task_created: '...',
+	task_completed: '/sounds/minecraft_anvil.mp3',
+	task_open_form: '/sounds/minecraft_open_chest.mp3',
+	task_close_form: '/sounds/minecraft_close_chest.mp3',
+	task_deleted: '/sounds/minecraft_hit.mp3',
 	task_uncompleted: '/sounds/dota_buyback.mp3',
+	// minecraft_hammer: '/sounds/minecraft_hammer.mp3',
 }

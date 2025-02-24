@@ -13,11 +13,11 @@ export const ModalWindowState = create<IModalWindowState>((set) => ({
 	content: null,
 	isOpen: false,
 	open: (content) => {
-		playSound(SoundsConfig.minecraft_open_chest)
+		playSound(SoundsConfig.task_open_form)
 		set({ isOpen: true, content: content })
 	},
 	close: () => {
-		playSound(SoundsConfig.minecraft_close_chest)
+		playSound(SoundsConfig.task_close_form)
 		set({ isOpen: false, content: null })
 	},
 }))
