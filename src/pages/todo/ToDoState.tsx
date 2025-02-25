@@ -26,6 +26,7 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 
 	// CRID operations
 	create: (title) => {
+		playSound(SoundsConfig.task_created)
 		const currentDate = new Date().toISOString()
 		get().db?.execute(
 			`INSERT INTO TodoTasks 
@@ -39,9 +40,9 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 	update: (todo) => {
 		get().db?.execute(
 			`UPDATE TodoTasks 
-					SET title = $1, edited_date = $2 
+					SET title = $1, description = $4, edited_date = $2 
 					WHERE id = $3`,
-			[todo.title, new Date().toISOString(), todo.id]
+			[todo.title, new Date().toISOString(), todo.id, todo.description]
 		)
 		get().loadData()
 	},

@@ -6,10 +6,18 @@ interface IToDoTaskProps {
 }
 
 export const ToDoTask = ({ item, options }: IToDoTaskProps) => {
+	const localDateFormatted =
+		new Date(item.created_date).toLocaleDateString() +
+		' ' +
+		new Date(item.created_date).toLocaleTimeString().slice(0, 5)
+
 	return (
 		<div key={item.id} className='box-type1'>
-			<span>{item.title}</span>
-			<div className='box-type1-options'>
+			<div className='info'>
+				<h3>{item.title}</h3>
+				<span>{localDateFormatted}</span>
+			</div>
+			<div className='options'>
 				{options?.map((option) => (
 					<button
 						key={option.text}

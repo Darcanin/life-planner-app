@@ -45,6 +45,20 @@ export const ToDoForm = ({ id }: { id: number }) => {
 					autoComplete='off'
 				/>
 			</div>
+			<div className='flex flex-col gap-0.5'>
+				<label
+					className='italic text-white/70 text-xs uppercase'
+					htmlFor='title'
+				>
+					Описание задачи
+				</label>
+				<textarea
+					{...register('description')}
+					className='w-full'
+					autoComplete='off'
+					rows={3}
+				/>
+			</div>
 			<button type='submit' className='button-type1 mt-6'>
 				Сохранить изменения
 			</button>

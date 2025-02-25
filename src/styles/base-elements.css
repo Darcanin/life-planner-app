@@ -7,8 +7,12 @@ button {
 	cursor: pointer;
 }
 
+textarea,
 input[type='search'],
 input[type='text'] {
+	width: 100%;
+	min-width: 40px;
+	max-width: 100%;
 	padding: 0.25rem 0.75rem;
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 0.25rem;
@@ -27,4 +31,8 @@ input[type='text'] {
 		outline: 2px solid rgba(5, 255, 163, 0.6);
 		background-color: rgba(255, 255, 255, 0.15);
 	}
+}
+
+textarea {
+	resize: none;
 }
