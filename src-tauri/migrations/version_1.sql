@@ -10,12 +10,22 @@ CREATE TABLE IF NOT EXISTS "TodoTasks" (
     "id"            INTEGER PRIMARY KEY AUTOINCREMENT,
     "title"         TEXT NOT NULL,
     "description"   TEXT,
-    "created_date"  TEXT NOT NULL,
-    "edited_date"   TEXT NOT NULL,
+    "created_date"  TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "edited_date"   TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "start_date"    TEXT,
     "finish_date"   TEXT,
     "closed_date"   TEXT
 );
+
+CREATE TRIGGER IF NOT EXISTS on_update_change_edited_date
+AFTER UPDATE ON "TodoTasks"
+FOR EACH ROW
+BEGIN
+    UPDATE "TodoTasks"
+    SET "edited_date" = CURRENT_TIMESTAMP
+    WHERE "id" = OLD."id";
+END;
+
 
 
 

@@ -6,10 +6,9 @@ interface IToDoTaskProps {
 }
 
 export const ToDoTask = ({ item, options }: IToDoTaskProps) => {
+	const date = new Date(item.created_date + 'Z')
 	const localDateFormatted =
-		new Date(item.created_date).toLocaleDateString() +
-		' ' +
-		new Date(item.created_date).toLocaleTimeString().slice(0, 5)
+		date.toLocaleDateString() + ' ' + date.toLocaleTimeString().slice(0, 5)
 
 	return (
 		<div key={item.id} className='box-type1'>

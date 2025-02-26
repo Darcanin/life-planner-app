@@ -27,29 +27,38 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 	// CRID operations
 	create: (title) => {
 		playSound(SoundsConfig.task_created)
-		const currentDate = new Date().toISOString()
-		get().db?.execute(
-			`INSERT INTO TodoTasks 
-               (title, created_date, edited_date) 
+
+		get()
+			.db?.execute(
+				`INSERT INTO TodoTasks 
+               (title)
                VALUES 
-               ($1, $2, $3)`,
-			[title, currentDate, currentDate]
-		)
-		get().loadData()
+               ($1)`,
+				[title]
+			)
+			.then(() => {
+				get().loadData()
+			})
 	},
 	update: (todo) => {
-		get().db?.execute(
-			`UPDATE TodoTasks 
-					SET title = $1, description = $4, edited_date = $2 
+		get()
+			.db?.execute(
+				`UPDATE TodoTasks 
+					SET title = $1, description = $2, 
 					WHERE id = $3`,
-			[todo.title, new Date().toISOString(), todo.id, todo.description]
-		)
-		get().loadData()
+				[todo.title, todo.description, todo.id]
+			)
+			.then(() => {
+				get().loadData()
+			})
 	},
 	delete: (id) => {
 		playSound(SoundsConfig.task_deleted)
-		get().db?.execute(`DELETE FROM TodoTasks WHERE id = $1`, [id])
-		get().loadData()
+		get()
+			.db?.execute(`DELETE FROM TodoTasks WHERE id = $1`, [id])
+			.then(() => {
+				get().loadData()
+			})
 	},
 	get: (id) => {
 		return get().todos.find((todo) => todo.id === id)
@@ -63,14 +72,17 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 			: playSound(SoundsConfig.task_completed)
 		const date = isCompleted ? null : new Date().toISOString()
 
-		get().db?.execute(
-			`
+		get()
+			.db?.execute(
+				`
 			UPDATE TodoTasks 
 				SET closed_date = $1 
 				WHERE id = $2`,
-			[date, id]
-		)
-		get().loadData()
+				[date, id]
+			)
+			.then(() => {
+				get().loadData()
+			})
 	},
 
 	// Load data
