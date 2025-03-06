@@ -44,9 +44,9 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 		get()
 			.db?.execute(
 				`UPDATE TodoTasks 
-					SET title = $1, description = $2, 
-					WHERE id = $3`,
-				[todo.title, todo.description, todo.id]
+					SET title = $1, description = $2, finish_date = $3
+					WHERE id = $4`,
+				[todo.title, todo.description, todo.finish_date, todo.id]
 			)
 			.then(() => {
 				get().loadData()
@@ -87,8 +87,10 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 
 	// Load data
 	loadDataBase: async () => {
-		set({ db: await Database.load('sqlite:life-planner.db') })
-		get().loadData()
+		await Database.load('sqlite:life-planner.db').then((rez) => {
+			set({ db: rez })
+			get().loadData()
+		})
 	},
 	loadData: async () => {
 		setTimeout(() => {
@@ -96,7 +98,6 @@ export const ToDoState = create<IToDoState>((set, get) => ({
 				.db?.select('SELECT * FROM TodoTasks')
 				.then((res: any) => {
 					set({ todos: res })
-					console.log(res)
 				})
 				.catch((err) => {
 					console.log(err)

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Database from '@tauri-apps/plugin-sql'
+import { LineCard } from '../../components/ui/containers/LineCard'
 // import type { QueryResult } from "@tauri-apps/plugin-sql";
 
 interface DailyTask {
@@ -80,24 +81,18 @@ export const DailyPage = () => {
 				</header>
 				<ul className='py-3 flex flex-col gap-1'>
 					{daily ? (
-						daily.map((item: DailyTask) => {
-							return (
-								<li
-									key={item.id}
-									className='box-type1 flex flex-row justify-between'
-								>
-									<span>{item.title}</span>
-									<button
-										type='button'
-										onClick={() => {
-											onDailyDelete(item.id)
-										}}
-									>
-										❌
-									</button>
-								</li>
-							)
-						})
+						daily.map((item: DailyTask) => (
+							<LineCard
+								key={item.id}
+								title={item.title}
+								options={[
+									{
+										text: '❌',
+										callBack: () => onDailyDelete(item.id),
+									},
+								]}
+							/>
+						))
 					) : (
 						<div>Задач не найдено</div>
 					)}

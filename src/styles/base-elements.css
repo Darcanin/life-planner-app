@@ -9,7 +9,8 @@ button {
 
 textarea,
 input[type='search'],
-input[type='text'] {
+input[type='text'],
+input[type='datetime-local'] {
 	width: 100%;
 	min-width: 40px;
 	max-width: 100%;
@@ -26,6 +27,7 @@ input[type='text'] {
 	transition-duration: 0.2s;
 
 	font-size: 15px;
+	color-scheme: dark;
 
 	&:focus {
 		outline: 2px solid rgba(5, 255, 163, 0.6);

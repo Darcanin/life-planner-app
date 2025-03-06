@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS "TodoTasks" (
 CREATE TRIGGER IF NOT EXISTS on_update_change_edited_date
 AFTER UPDATE ON "TodoTasks"
 FOR EACH ROW
+WHEN OLD.edited_date = NEW.edited_date
 BEGIN
     UPDATE "TodoTasks"
     SET "edited_date" = CURRENT_TIMESTAMP
