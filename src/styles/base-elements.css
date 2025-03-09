@@ -38,3 +38,27 @@ input[type='datetime-local'] {
 textarea {
 	resize: none;
 }
+
+.date_time_displayer {
+	input {
+		width: 42px;
+		text-align: center;
+
+		&:last-child {
+			width: 70px;
+		}
+
+		&::placeholder {
+			font-size: 0.75rem;
+		}
+	}
+
+	&.overdue {
+		input {
+			background-color: #523a3a;
+
+			color: rgb(255, 153, 153);
+			font-weight: bold;
+		}
+	}
+}

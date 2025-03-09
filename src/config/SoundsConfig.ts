@@ -4,7 +4,9 @@ export const SoundsConfig = {
 	task_completed: '/sounds/minecraft_experience.mp3',
 	task_open_form: '/sounds/minecraft_open_chest.mp3',
 	task_close_form: '/sounds/minecraft_close_chest.mp3',
-	task_deleted: '/sounds/minecraft_plop.mp3',
+	task_deleted: '/sounds/minecraft_spider_death.mp3',
 	task_uncompleted: '/sounds/dota_buyback.mp3',
 	// minecraft_hammer: '/sounds/minecraft_hammer.mp3',
+
+	request: '/sounds/minecraft_gust_moan_7.mp3',
 }

@@ -5,5 +5,5 @@ import { ReactNode } from 'react'
  */
 
 export const ContentWrapper = ({ children }: { children: ReactNode }) => {
-	return <div className='p-3 overflow-auto'>{children}</div>
+	return <div className='p-3 overflow-hidden flex flex-col'>{children}</div>
 }

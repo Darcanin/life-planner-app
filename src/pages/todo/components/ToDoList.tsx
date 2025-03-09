@@ -19,7 +19,7 @@ export const ToDoList = ({ todos }: { todos: IToDoTask[] }) => {
 	]
 
 	return (
-		<div className='py-3 flex flex-col gap-1'>
+		<div className='py-3 flex flex-col gap-1 overflow-auto'>
 			{todos?.map((item) =>
 				item.closed_date ? null : (
 					<ToDoTask key={item.id} item={item} options={options} />

@@ -23,7 +23,7 @@ export const ToDoPage = () => {
 	}
 
 	return (
-		<div className='p-4'>
+		<>
 			<header className='header-type1 flex justify-between'>
 				<form onSubmit={onCreateToDo} className='flex flex-row gap-2'>
 					<input
@@ -31,6 +31,7 @@ export const ToDoPage = () => {
 						type='text'
 						name='title'
 						placeholder='Название для задачи...'
+						required
 					/>
 					<button type='submit' className='button-type1'>
 						Создать
@@ -49,8 +50,10 @@ export const ToDoPage = () => {
 					🏁
 				</button>
 			</header>
-			{display === 'list' ? <ToDoList todos={todos} /> : null}
-			{display === 'history' ? <ToDoListHistory todos={todos} /> : null}
-		</div>
+			<div className='grow-1 overflow-auto p-2 m-2'>
+				{display === 'list' ? <ToDoList todos={todos} /> : null}
+				{display === 'history' ? <ToDoListHistory todos={todos} /> : null}
+			</div>
+		</>
 	)
 }

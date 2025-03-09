@@ -20,14 +20,14 @@ export const AppHeader = () => {
 					to='/todo'
 					className={location.pathname === '/todo' ? 'active' : ''}
 				>
-					ToDo tasks
+					ToDo
 				</Link>
-				<Link
+				{/* <Link
 					to='/daily'
 					className={location.pathname === '/daily' ? 'active' : ''}
 				>
-					Daily tasks
-				</Link>
+					Daily
+				</Link> */}
 				<Link
 					to='/settings'
 					className={location.pathname === '/settings' ? 'active' : ''}
