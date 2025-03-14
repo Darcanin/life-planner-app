@@ -2,6 +2,11 @@
 @import './tailwind.css';
 @import './base-elements.css';
 
+@import './containers.css';
+
+@import './selectors/selectors.css';
+@import './components/components.css';
+
 /* Root */
 :root {
 	@apply font-sans text-white;

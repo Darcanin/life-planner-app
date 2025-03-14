@@ -15,7 +15,7 @@ pub fn run() {
         Migration {
             version: 1,
             description: "create_initial_tables",
-            sql: include_str!("../migrations/version_1.sql"),
+            sql: include_str!("../migrations/scheme_v1.sql"),
             kind: MigrationKind::Up,
         }
     ];

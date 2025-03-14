@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DataBase } from '../../config/DataBase'
 import { IToDoTask } from '../todo/types'
 import { Section } from '../../components/layout/Section'
@@ -8,9 +8,21 @@ import { DateTimeDisplayer } from '../../components/ui/fields/DateTimeDisplayer'
 
 export const HomePage = () => {
 	const [todos, setTodos] = useState<IToDoTask[]>([])
-	DataBase.db
-		?.select<IToDoTask[]>(
-			`
+
+	// Получение данных
+	useEffect(() => {
+		getTodos()
+	}, [])
+
+	const getTodos = () => {
+		if (DataBase.db === null) {
+			setTimeout(getTodos, 100)
+			return
+		}
+
+		DataBase.db
+			?.select<IToDoTask[]>(
+				`
 			SELECT * 
 			FROM TodoTasks
 			WHERE finish_date IS NOT NULL
@@ -18,13 +30,14 @@ export const HomePage = () => {
 			ORDER BY finish_date ASC
 			LIMIT 4
 		`
-		)
-		.then((data) => {
-			setTodos(data)
-		})
-		.catch((err) => {
-			console.error(err)
-		})
+			)
+			.then((data) => {
+				setTodos(data)
+			})
+			.catch((err) => {
+				console.error(err)
+			})
+	}
 
 	const [posts, setPosts] = useState([])
 
@@ -38,7 +51,7 @@ export const HomePage = () => {
 	return (
 		<div className='h-full flex flex-col'>
 			<Section className='shrink-0'>
-				<span className='text-amber-400 font-bold'>Горящие ToDo-шки:</span>
+				<span className='text-amber-400 font-bold'>👀⏳ToDo:</span>
 				<div className='flex flex-col gap-1 mt-2'>
 					{todos.map((todo: IToDoTask) => {
 						const diff = todo.finish_date
@@ -52,7 +65,13 @@ export const HomePage = () => {
 								className='flex items-center gap-2 justify-between p-2 bg-grey/80 rounded'
 							>
 								<span>{todo.title}</span>
-								<DateTimeDisplayer date={diff} />
+								<DateTimeDisplayer
+									date={diff}
+									overdue={{
+										text: '❗Просрочена❗',
+										textColor: '#933',
+									}}
+								/>
 							</div>
 						)
 					})}

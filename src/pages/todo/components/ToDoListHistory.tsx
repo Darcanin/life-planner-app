@@ -1,20 +1,43 @@
+import { useEffect, useState } from 'react'
+import { DataBase } from '../../../config/DataBase'
 import { ToDoState } from '../ToDoState'
 import { IToDoTask } from '../types'
 import { ToDoTask } from './ToDoTask'
 
-export const ToDoListHistory = ({ todos }: { todos: IToDoTask[] }) => {
+export const ToDoListHistory = () => {
+	const [todos, setTodos] = useState<IToDoTask[]>([])
 	const completedTodo = ToDoState((state) => state.completed)
 	const options = [{ text: '🔙', fn: completedTodo }]
 
-	// Сортируем задачи по дате в обратном порядке
-	const sortedTodos = [...todos].sort((a, b) => {
-		if (!a.closed_date || !b.closed_date) return 0
-		return (
-			new Date(b.closed_date).getTime() - new Date(a.closed_date).getTime()
-		)
-	})
+	// Получение данных
+	useEffect(() => {
+		getTodos()
+	}, [])
 
-	const groupedTasks = sortedTodos.reduce((acc, task) => {
+	const getTodos = () => {
+		if (DataBase.db === null) {
+			setTimeout(getTodos, 100)
+			return
+		}
+
+		DataBase.db
+			?.select<IToDoTask[]>(
+				`
+					SELECT * 
+					FROM TodoTasks
+					WHERE closed_date IS NOT NULL
+					ORDER BY finish_date DESC
+				`
+			)
+			.then((data) => {
+				setTodos(data)
+			})
+			.catch((err) => {
+				console.error(err)
+			})
+	}
+
+	const groupedTasks = [...todos].reduce((acc, task) => {
 		console.log(
 			`Task: [title: ${task.title} closed_date: ${task.closed_date}]`
 		)

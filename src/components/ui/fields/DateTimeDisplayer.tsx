@@ -2,7 +2,18 @@ const minuteInSeconds = 1000 * 60
 const hourInSeconds = minuteInSeconds * 60
 const dayInSeconds = hourInSeconds * 24
 
-export const DateTimeDisplayer = ({ date }: { date: number }) => {
+interface IPDateTimeDisplayer {
+	date: number
+	overdue?: {
+		text: string
+		textColor: string
+	}
+}
+
+export const DateTimeDisplayer = ({
+	date,
+	overdue = { text: '', textColor: '' },
+}: IPDateTimeDisplayer) => {
 	const inpDate = Math.abs(date)
 	const days = Math.floor(inpDate / dayInSeconds)
 	const hours = Math.floor((inpDate % dayInSeconds) / hourInSeconds)
@@ -15,7 +26,9 @@ export const DateTimeDisplayer = ({ date }: { date: number }) => {
 				(date > 0 ? '' : ' overdue')
 			}
 		>
-			{date < 0 && '☢🔶❗❗'}
+			{date < 0 && overdue && (
+				<span style={{ color: overdue.textColor }}>{overdue.text}</span>
+			)}
 			<input
 				className='text-white'
 				type='text'

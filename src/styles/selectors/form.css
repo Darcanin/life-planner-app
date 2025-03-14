@@ -1,0 +1,31 @@
+textarea,
+input[type='search'],
+input[type='text'],
+input[type='datetime-local'] {
+	width: 100%;
+	min-width: 40px;
+	max-width: 100%;
+	padding: 0.25rem 0.75rem;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 0.25rem;
+	-webkit-border-radius: 0.25rem;
+	-moz-border-radius: 0.25rem;
+	-ms-border-radius: 0.25rem;
+	-o-border-radius: 0.25rem;
+
+	outline: 2px solid transparent;
+	transition-property: outline, background-color;
+	transition-duration: 0.2s;
+
+	font-size: 15px;
+	color-scheme: dark;
+
+	&:focus {
+		outline: 2px solid rgba(5, 255, 163, 0.6);
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+}
+
+textarea {
+	resize: none;
+}

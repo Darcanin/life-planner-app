@@ -1,47 +1,6 @@
 @import 'tailwindcss';
 @config "../../tailwind.config.ts";
 
-/* Контейнеры задач */
-.box-type1 {
-	@apply px-3 py-0.5 rounded bg-secondary/5 hover:bg-secondary/20 text-white 
-	flex flex-row justify-between 
-	[&:hover>.options]:opacity-100;
-
-	transition-property: transform, opacity, background-color;
-	transition-duration: 300ms;
-
-	opacity: 1;
-	transform: translateY(0) translateX(0);
-	-webkit-transform: translateY(0) translateX(0);
-	-moz-transform: translateY(0) translateX(0);
-	-ms-transform: translateY(0) translateX(0);
-	-o-transform: translateY(0) translateX(0);
-}
-
-/* Начальное значение для анимации появления */
-@starting-style {
-	.box-type1 {
-		opacity: 0;
-		transform: translateY(-20px) translateX(5px);
-		-webkit-transform: translateY(-20px) translateX(5px);
-		-moz-transform: translateY(-20px) translateX(5px);
-		-ms-transform: translateY(-20px) translateX(5px);
-		-o-transform: translateY(-20px) translateX(5px);
-	}
-}
-
-.info {
-	@apply flex flex-col;
-
-	span {
-		@apply text-[11px] text-gray-400 rounded bg-gray-600/20 px-1 uppercase;
-	}
-}
-
-.options {
-	@apply flex flex-row gap-1 opacity-10 transition-opacity duration-300;
-}
-
 /* Контейнеры header */
 .header-type1 {
 	@apply p-1.5 flex flex-row gap-3 border border-gray-600 rounded;

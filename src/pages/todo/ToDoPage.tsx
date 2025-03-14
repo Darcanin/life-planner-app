@@ -39,6 +39,7 @@ export const ToDoPage = () => {
 				</form>
 				<button
 					type='button'
+					title='Флаг выполненности задач'
 					onClick={() =>
 						setDisplay(display === 'list' ? 'history' : 'list')
 					}
@@ -52,7 +53,7 @@ export const ToDoPage = () => {
 			</header>
 			<div className='grow-1 overflow-auto p-2 m-2'>
 				{display === 'list' ? <ToDoList todos={todos} /> : null}
-				{display === 'history' ? <ToDoListHistory todos={todos} /> : null}
+				{display === 'history' ? <ToDoListHistory /> : null}
 			</div>
 		</>
 	)
